@@ -1,12 +1,12 @@
-In Production
+# In Production
 
 remove all the comments
 remove console.log
 
 
-React makes the code faster along with other packages and libraries
+# React makes the code faster along with other packages and libraries
 
-npm - does Not stand for node pacakage manager
+# npm - does Not stand for node pacakage manager
 npm has NO fullform
 npm manages packages but doesn't not stand for it
 npm is a repository of all the packages (all the libraries etc)
@@ -16,33 +16,34 @@ packages are also called depenedencies
 npm take care of the version of the package.json and the versions of diff packages in package.json
 
 
-BUNDLER
+# BUNDLER
 most imp package in the proj to be installed- bundler
 ex- webpack, parcel, vite & esbuild
 bundler packages/bundles your app such that can push to the production
 our whole code needs to be minified, bundled together(css, html, js files), compressed before going to production (this compression is done by BUNDLER)
 we will use parcel as bundler (parcel comes as node package)
 
-command to install any dependency- npm install -D parcel  (D here stands for dev dependency means installing parcel as dev dependency not as normal dependency) (installing parcel from npm)
+# command to install any dependency- 
+npm install -D parcel  (D here stands for dev dependency means installing parcel as dev dependency not as normal dependency) (installing parcel from npm)
 
 
-2 kinds of dependencies are there---
+# 2 kinds of dependencies are there---
 1. Dev dependency- required when developing the app, i.e, during development phase 
 2. Normal dependency- used during production phase also along with development phase
 
 
-caret (^)
+# caret (^)
 when there is minor upgrade, parcel wll automatically install the minor version 
 ^version “Compatible with version”, will automatically update you to all future minor/patch versions ^1.2.3 will use releases from 1.2.3 to < 2.0.0
 
 
-tilde (~)
+# tilde (~)
 automatically install the major version 
 a little riskier 
 ~version “Approximately equivalent to version”, ~1.2.3 will use releases from 1.2.3 to < 1.3.0.
 
 
-package-lock.json & package.json
+# package-lock.json & package.json
 p.json- keeps track of what version of package installed (use tilde/ caret not exact version mentioned (approx version))
 p-l.json- keep track the exact version of that dependency or package installed
 p-l.json - keeps track that zame versions installed in production as in local such that the code doesn't break
@@ -51,10 +52,11 @@ every package/dependency has it's own p.json & it's own o-l.json ( as maintain i
 
 
 
-node_modules- database or code for packages that we installed (fetches all the code of all the dependencies installed using npm)
+# node_modules 
+database or code for packages that we installed (fetches all the code of all the dependencies installed using npm)
 (there are so many codes other tha parcel - our proj has a dependency parcel, so got that code in node modules, parcel also has dependency on other packages/libraries/dependencies- thoise also get installe, these dependencies might further have other dependencies -this is called TRANSITIVE DEPENDENCIES)
 
-NODE MODULES(extremely bulky) is the collection of dependencies
+# NODE MODULES(extremely bulky) is the collection of dependencies
 we put it inside .gitignore
 it's so bulky hence don't put it on github & production
 
@@ -62,19 +64,19 @@ but we do put package.json & package-lock.json in github & production (imp as ma
 
 whatever you can regenerate, don't put it on github
 
-.gitignore - contains all the files/ modules you don't want to upload on git
+# .gitignore - contains all the files/ modules you don't want to upload on git
 
 explaining npx parcel index.html
 npx is similar to npm (npx used to execute a package) (here executing parcel) (npm is used to install a package)
 
-way to get react in our code
+# way to get react in our code
 through cdn link to import react & react dom (not a good way as it first make a network to unpackaged site and also here specific react there (so need to update everytime))
 better way - to get react as dependency (will get included in node modules also & also in package json)
 
 normal js code doesn't have import/ export (js file refrenced in index.html file are treated as browser script)(so we need to tell it that it's not a normal js file but a module (so add type="module" in index.html where refrencing that js file))
 
 
-PARCEL 
+# PARCEL 
 created dev build for you
 created localhost for you (hosting on local server)
 automatically refreshing the page once save the code (as it's doing hmr(hot module replacement)) Parcel uses file watching algorithm(keeps an eye on all the files, as soon as you save, parcel builds it again) helps in hmr 
@@ -82,7 +84,7 @@ automatically refreshing the page once save the code (as it's doing hmr(hot modu
 
 The most expensive thing on vrowser is image uploading so, parcel helps in image optimisation
 
-PARCEL DOES
+# PARCEL DOES
 -Dev build
 -Local server
 -HMR= hot module Replacement (hot loading)
@@ -110,7 +112,7 @@ dist along with other files- is now production ready code
 production build is highly optimized code 
 parcel cache- also regeneratable
 
-browserslist is an npm package
+# browserslist is an npm package
 adding this in package.json (what to write in those values -website browserslist)
 "browserslist":{
     "last 2 Chrome versions",
@@ -120,7 +122,7 @@ can configure as per country etc (can mnake your app work for previous/older ver
 
 
 
-COMMAND LIST
+# COMMAND LIST
 -npm install -D parcel (to install)
 -npx parcel index.html (command to setup our proj in parcel (or igniting our app, ie.e hosting our app on local server - localhost:1234))
 {note: the core dump & size error resolved using command- ulimit -c unlimited }

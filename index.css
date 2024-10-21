@@ -1,3 +1,94 @@
-#headingId{
-    color: red;
+.header{
+    display: flex;
+    justify-content: space-between; /* shifts the home, about, cart on right side */
+    border: 1px solid black /* to make the header look separate*/
+}
+
+.logo{
+    width:120px;
+}
+
+.nav-items > ul{
+    display: flex;
+    font-size: larger;
+    padding: 0px 20px; /*top& bottom- 0 left & right-20px*/
+    list-style-type: none; /* dot dot before name, contact, gets removed*/
+}
+
+.nav-items >ul > li {
+    padding: 10px;
+    margin:10px;
+}
+
+.res-card {
+    margin:5px;
+    width:200px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    
+
+}
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h5{
+    margin:0px;
+}
+.res-card:hover{
+    cursor:pointer;
+    border:1px solid black;
+
+}
+
+.res-logo{
+    margin:5px;
+    width:190px;
+}
+
+.filter-btn{
+    width: 200px;
+    cursor:pointer;
+    border: 2px black;
+    background-color: #f0f0f0;;
+    
+}
+
+.footer{
+    border: 2px solid black;
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyrightLogo{
+    width: 50px;
+}
+
+.contact> ul{
+    list-style-type: none;
+   
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-card{
+    background-color: #f0f0f0;
+    width: 200px;
+    height: 400px;
+    margin:10px;
+
+}
+
+.login-out-btn{
+    padding: 0 20px;
+    font-size: large;
+}
+
+.filter{
+    display:flex;
 }
