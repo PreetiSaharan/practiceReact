@@ -129,6 +129,41 @@ this.setState({
                     });
 so only count & count2 val updated. other state vars are not even touched by react
 
+when onclick button is clicked - react will find the diff - reconciliation process and only updates those state variables which are put inside setState and rerender the component
+
 
 # LIFECYCLE OF react class based component (cbc)
 # how this cbc is loaded/ mounted on webpage
+# LIFECYCLE METHODS
+
+whwnever about us page/ component is rendered onto the webpage or mounted onto the webpage, it basically starts rendering this jsx, when encounter uUserClass component - it will start loading UserClass - an instance of UserClass (cbc) is created - Constructor is called- the first thing when a class loads ( class loads means a new instance od that class is created)
+
+Once constructor is called - then render is called - that's how this class is initiated
+
+Methods of - classBasedcomponent (cbc)- constructor(), render(), componentDidMount()
+
+when cbc is loaded - 1st - constructor method is called, then render - once it's mounted on the webpage,. then componentDidMount method is called
+
+ABOUT component (cbc) - parent compo
+USERCLASS (cbc) - child compo
+so- 1st parent compo - constructor called, then its render then constructor of child compo, then render of child compo.
+
+if componentDidMount also there in both the parent and child cbc
+
+ORDER of calling lifecycle methods of parent & child (try console.log to see this sequence in code)
+parent constructor
+parent render
+child constructor
+child render
+child componentDidMount
+parent componentDidMount (once the child is mounted successfully i.e the parent is rendered completely (render method finished) i.e. the parent is fully mounted - hence the parent componentDidMount is called)
+
+# USECASE Of componentDidmount - to make API calls
+# Why api call made inside compoDidMount
+
+in functional compo- we make api call in useEffect - once we load our compo then API call is made ( such that the react doesn't wait for api to return the results and show blank page)
+
+Fc React- quicklyrender the compo once - make Api call - then fill the data(i.e. rerender)  (not wait for api to return data to render the compo - show blank page for too long)
+
+Similarly in cbc - want to quickly render thr component, then make the api call and fill the data (i.e. rerender the compo) - that's why put api callinside comp
+
