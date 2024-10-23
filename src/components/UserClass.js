@@ -10,19 +10,22 @@ class UserClass extends React.Component{
             count: 0, // that's how we initialize state variable in class based compo
             count2:2,
         };
-        console.log("Child Constructor");
+        console.log(this.props.name + "Child Constructor");
     }
     
-    componentDidMount(){
-        console.log("Child ComponentDidMount");
-    }
+    async componentDidMount(){
+        console.log(this.props.name + "Child ComponentDidMount");
+        const data = await fetch("https://api.github.com/users/PreetiSaharan");
+        const json = data.json();
+        console.log(json);
+        }
 
     render(){
         const {name, location} = this.props; //destructuring // if don't destructure here, gotta use - this.props.name etc
         const {count, count2} = this.state; // destructed // otherwise - this.state.count to be used
 
-        console.log("Child Render");
-        
+        console.log(this.props.name + "Child Render");
+
         return (
             <div className="user-card">
                 <h3> Count= {count}</h3>

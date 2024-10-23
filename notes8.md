@@ -165,5 +165,43 @@ in functional compo- we make api call in useEffect - once we load our compo then
 
 Fc React- quicklyrender the compo once - make Api call - then fill the data(i.e. rerender)  (not wait for api to return data to render the compo - show blank page for too long)
 
-Similarly in cbc - want to quickly render thr component, then make the api call and fill the data (i.e. rerender the compo) - that's why put api callinside comp
+Similarly in cbc - want to quickly render thr component, then make the api call and fill the data (i.e. rerender the compo) - that's why put api call inside comp
+
+ # order of life cycle methods if there are 2 instances of cbc (UserClass) passed to About
+
+ (can use same UserClass(cbc) but add diff props)
+
+ ORDER
+Parent Constructor 
+Parent Render
+Roopa class propChild Constructor 
+Roopa class propChild Render 
+Elon Musk class propChild Constructor 
+Elon Musk class propChild Render 
+Roopa class propChild ComponentDidMount 
+Elon Musk class propChild ComponentDidMount
+Parent CompoDidMount
+
+# REACT is fast because
+-it has 2 phases in which it work - render phase  & commit phase
+sequence in which called (lifecycle)
+1) Constructor method
+2) Render method
+3) React Updates DOM & refs
+4) componentDidMount
+(1&2 - RENDER PHASE, 3&4- COMMIT PHASE)
+
+every child, parent, component - goes through this lifecycle
+
+# How to make api call inside cbc
+make componentDidMount as async
+//returns promise that's why use - await
+async componentDidMount (){
+    const data = await fetch("https://api.github.com/users/PreetiSaharan");
+    const json =  data.json();
+}
+
+
+#the rest of the content has to be done tomorrow
+
 
