@@ -202,6 +202,38 @@ async componentDidMount (){
 }
 
 
-#the rest of the content has to be done tomorrow
+# entire SEQUENCE IN USERCLASS
+userclass callled
+1st constructor is called (which has the state )
+render called - here 1st state having dummy data called (so Dummy data is 1st loaded in REACT DOM till api calls and returns result)
+component did mount called
+here api call happens (inside componentDidMount)
+till now - mounting cycle (now over when componenent was once rendered 1st)
+now updating cycle starts
+then setState called (updating state)
+updates the userinfo (state varibale)
+after that once again render happens -REACT will update the DOM with the updated values
+then componentDidUpdate is called - called at the end. 
+now our update cycle ends
+
+
+# SEQUENCE of whole LIFECYCLE METHOD (Mounting cycle --> Updating --> Unmounting cycle)
+constructor(dummy data)
+render(dummy)
+      <HTML Dummy>
+ componnentDidMount
+    <API Call>
+    <this.setState> -- state variable is updated (using differential algo - reconciliation process)
+
+Now UPDATE cycle
+Render(through api data)
+<html loaded with new api data>
+componentDidUpdate
+
+UNMOUNTING CYCLE (disappearing from UI)
+ComponentWillUnmount() - called just before component disappears from ui (so called when move to diff page)
+
+FunctionBasedComponent - simplified 
+NEVER Compare React lifecycle methods to functional components hooks etc (they are not equivalent)
 
 
