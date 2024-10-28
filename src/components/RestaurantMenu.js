@@ -1,14 +1,16 @@
 //reusable component
-import {useEffect, useState} from "react"; // useEffect is named import
+//import {useEffect, useState} from "react"; // useEffect is named import
 import Shimmer from "./Shimmer";
 import {useParams} from "react-router-dom";
-import { MENU_API } from "../utils/constants";
+//import { MENU_API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-    const [resInfo, setResInfo] = useState(null); //default value null
+    //const [resInfo, setResInfo] = useState(null); //default value null
     const {resId} = useParams(); // const params = useParams()- give the object having resId, so using object brackets- can extract the resId directly
     //console.log(resId);
-
+    const resInfo = useRestaurantMenu(resId);
+    /* //WITHOUT CUSTOM HOOK VERSION
     useEffect(()=> {
         fetchMenu();
     }, []); // useEffect takes 2 arg - 1st cb function & other is DA (here using empty DA as want to render it once)
@@ -18,16 +20,18 @@ const RestaurantMenu = () => {
         const data = await fetch(MENU_API+resId);
     
     const json = await data.json();
-    //console.log(json);
+    console.log(json);
     setResInfo(json.data);
     };
+    */
 
     if(resInfo == null) return <Shimmer/>;// if not null then only go to thenext step
+    
+    const {name, avgRating, costForTwoMessage, cuisines}=resInfo?.cards[2]?.card?.card?.info; // optional chaining is imp
+    
     const {itemCards} = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card;
     console.log (itemCards);
 
-    const {name, avgRating, costForTwoMessage, cuisines}=resInfo?.cards[2]?.card?.card?.info; // optional chaining is imp
-    
     //<li>{itemCards[0].card.info.name}</li> // this is being iterated 
 
     return ( 
