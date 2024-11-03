@@ -71,6 +71,13 @@ ex- if in our project we create grocery delivery (has many components- grocery h
 we don't import it normally but do lazy loading- means initially when we  go to our app (home)- it doesn't load the code for Grocery- only load it we we go to grocery page through it's link
 -- called LAZY LOADING
 
+# Other names of LAZY LOADING 
+Chunking
+Code Splitting
+Dynamic Loading
+On Demand Loading
+Dynamic Loading
+
 i.e. NOT loading everything at once, but only loads that bundle ehen required- so also called- ON DEMAND LOADING
 
 
@@ -89,11 +96,29 @@ const Grocery = lazy()=>{
     import("./components/Grocery");
 }
 
-when go to grocery psge - see other bundle is create for grocery
+when go to grocery page - see other bundle is created for grocery
 
+so initially only index file/ bundle there. when click on grocery- the grocery bundle(code) comes (i.e on demand) (it takes some seconds to come, meanwhile when react renders- it doesn't get anything - so throws error - oops! something went wrong) ( because react is very fast)
+# Suspense ( provided by React Library)
+To resolve Above ERROR - we use Suspense component
 
+wrap our grocery component in Suspense (i.e lazy loading component(i.e. not avail at the moment) should be wrapped into Suspense - give Suspense a fallback/ placeholder( ie what should react load when the Grocery code not avail))
+can pass JSX in placeholder or shimmerui etc
+
+    path: "/grocery",
+                element: (
+                <Suspense fallback = {<h1>Loading...</h1>}>
+                    <Grocery/>
+                </Suspense>
+                )
+
+# SYSTEM DESIGN INTERVIEW
+Ask to make a big e-commerce website 
+ans) i will use lazy loading to distribute my code in chunks such that the app loading is v. fast & bundle size is reduced
 
  
+when use lazy loading - the entire code doesn't comes at once but only when called/ or on demand
+
 
 
 
