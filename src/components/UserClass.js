@@ -55,7 +55,7 @@ class UserClass extends React.Component{
         console.log(name);
 
         return (
-            <div className="user-card">
+            <div className="user-card border-solid">
                 <img src= {avatar_url} />
                 <h3> Name: {name}</h3>
                 <h3> Location: {location}</h3>

@@ -18,7 +18,7 @@ const User = ({name}) =>{
     const count = useState(0);
     const count2 = useState(2); 
     return(
-        <div className="user-card">
+        <div className="user-card m-4 p-4 bg-blue-50 rounded-lg">
         <h3>Count={count}</h3>
         <h3>Count2={count2}</h3>
         <h3>Name: {name}</h3>

@@ -20,7 +20,7 @@ class About extends React.Component{
         console.log("Parent Render");
         return(
             <div>
-            <h1>About</h1>
+            <h1 className="bg-green-100 p-5 mt-10 ">About</h1>
             <h2>Meet our Team</h2>
             <UserClass name={"Roopa class prop"} location={"sonipat class"}/> 
             <UserClass name={"Elon Musk class prop"} location={"USA class"}/>
@@ -30,6 +30,21 @@ class About extends React.Component{
 
 }
 
+    /*
+    render(){
+        console.log("Parent Render");
+        return(
+            <div>
+            <h1>About</h1>
+            <h2>Meet our Team</h2>
+            <UserClass name={"Roopa class prop"} location={"sonipat class"}/> 
+            <UserClass name={"Elon Musk class prop"} location={"USA class"}/>
+            </div>
+        )
+    }
+
+}
+*/
 /* Functional compo
 
 const About =()=>{

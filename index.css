@@ -1,8 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*
+//USING THIS BEFORE TAILWINDCSS (I.E. BEFORE EPISODE 10
 .header{
     display: flex;
-    justify-content: space-between; /* shifts the home, about, cart on right side */
-    border: 1px solid black /* to make the header look separate*/
-}
+    justify-content: space-between; // shifts the home, about, cart on right side 
+    border: 1px solid black  //to make the header look separate
 
 .logo{
     width:120px;
@@ -11,8 +17,8 @@
 .nav-items > ul{
     display: flex;
     font-size: larger;
-    padding: 0px 20px; /*top& bottom- 0 left & right-20px*/
-    list-style-type: none; /* dot dot before name, contact, gets removed*/
+    padding: 0px 20px; //top& bottom- 0 left & right-20px
+    list-style-type: none; // dot dot before name, contact, gets removed
 }
 
 .nav-items >ul > li {
@@ -98,3 +104,5 @@ h5{
     margin: 5px;
     border: 1px solid black;
 }
+
+*/
