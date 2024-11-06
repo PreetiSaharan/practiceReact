@@ -66,11 +66,17 @@ flex- used to bring things in 1 line
 flex-wrap - to wrap them (asin in flow)
 sm - means writing css for device whose size is greater than sm (so can change the color/etc of something for mobile or desktop)
 
+for a tag or label to overlap on other - we use - className = absolute (Promoted label)
+
+w-6/12 - means width will be half of the page
+
 # PROS of TailwindCSS
 
 can use on the fly - not have to change files
 fast development
 very lightweight - so when will make bundle of css - only will import the css that is required in our app (minimum css not all the classNames)(if used m-4 100 times, tailwind will put only 1 m-4 (i.e parcel will import only 1 m-4))
+
+
 
 
 # CONS 

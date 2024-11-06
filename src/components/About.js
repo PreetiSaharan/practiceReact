@@ -19,11 +19,18 @@ class About extends React.Component{
     render(){
         console.log("Parent Render");
         return(
-            <div>
-            <h1 className="bg-green-100 p-5 mt-10 ">About</h1>
-            <h2>Meet our Team</h2>
-            <UserClass name={"Roopa class prop"} location={"sonipat class"}/> 
-            <UserClass name={"Elon Musk class prop"} location={"USA class"}/>
+            <div className="bg-green-100 p-5 my-10">
+               
+                <h1 className="text-center font-bold text-lg">All you need to know ABOUT US..</h1>
+                <h3 className="font-bold text-center text-teal-600">Meet our Amazing Team!!</h3>
+            
+                <div className="flex flex-wrap">
+                    <UserClass name={"Roopa"} location={"sonipat class"}/> 
+                    <UserClass name={"Elon Musk"} location={"USA"}/>
+                    <UserClass name={"Elon Musk class prop"} location={"USA class"}/>
+                    <UserClass name={"Elon Musk class prop"} location={"USA class"}/>
+                    <UserClass name={"Elon Musk class prop"} location={"USA class"}/>
+                </div>
             </div>
         )
     }
