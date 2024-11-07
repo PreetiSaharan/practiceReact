@@ -5,6 +5,8 @@ import {useParams} from "react-router-dom";
 //import { MENU_API } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
+
 
 const RestaurantMenu = () => {
     //const [resInfo, setResInfo] = useState(null); //default value null
@@ -25,7 +27,8 @@ const RestaurantMenu = () => {
     setResInfo(json.data);
     };
     */
-
+    
+    const [showIndex, setShowIndex] = useState(null); // byDefault nothing is open (useState(0)- 1st category opened)
     if(resInfo == null) return <Shimmer/>;// if not null then only go to thenext step
     
     const {name, avgRating, costForTwoMessage, cuisines}=resInfo?.cards[2]?.card?.card?.info; // optional chaining is imp
@@ -44,7 +47,9 @@ const RestaurantMenu = () => {
             <h1 className ="font-bold  text-3xl my-4 p-4"> {name}</h1>
             <p className="font-bold">{avgRating} | {costForTwoMessage} | {cuisines.join(", ")}</p>
             {/*Categories Accordian */}
-            {categories.map((category)=> (<RestaurantCategory key={category?.card?.card?.title} data= {category?.card?.card}/> ))
+            {categories.map((category, index)=> (<RestaurantCategory key={category?.card?.card?.title} data= {category?.card?.card}  
+            showItems={index== showIndex ? true: false}
+            setShowIndex={() => setShowIndex(index)}/> ))
             }
         </div>
     )

@@ -3,6 +3,7 @@
 import User from "./User";
 import UserClass from "./UserClass";
 import React from "react"; // import {Component} from "react";
+import UserContext from "../utils/UserContext";
 
 //Class Based Compo (cbc)
 class About extends React.Component{
@@ -23,7 +24,11 @@ class About extends React.Component{
                
                 <h1 className="text-center font-bold text-lg">All you need to know ABOUT US..</h1>
                 <h3 className="font-bold text-center text-teal-600">Meet our Amazing Team!!</h3>
-            
+                <div> LoggedIN USER: 
+                    <UserContext.Consumer>
+                        {({loggedInUser})=> (<h1>{loggedInUser}</h1>)}
+                    
+                    </UserContext.Consumer></div>
                 <div className="flex flex-wrap">
                     <UserClass name={"Roopa"} location={"sonipat class"}/> 
                     <UserClass name={"Elon Musk"} location={"USA"}/>

@@ -1,9 +1,12 @@
 import { CDN_URL } from "../utils/constants"; //NAMED IMPORT
+import UserContext from "../utils/UserContext";
+import {useContext} from "react";
 
 //props.resName is a JS object ( to put JS we need to put it in {})
 //Restaurant Card (reusable)(so, create separate component)
 const RestaurantCard= (props) => {
     const {resData} = props;
+    const {loggedInUser} = useContext(UserContext);
 
     const {
         cloudinaryImageId,
@@ -20,6 +23,7 @@ const RestaurantCard= (props) => {
             <h5>{avgRating} stars</h5>
             <h5>{costForTwo}</h5>
             <h5>{resData?.info?.sla?.deliveryTime} minutes</h5>
+            <h5 className="font-bold"> User: {loggedInUser}</h5>
         </div>
 
     );

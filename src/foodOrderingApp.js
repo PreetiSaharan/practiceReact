@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useEffect, useContext } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -11,17 +11,34 @@ import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { lazy } from "react";
 const Grocery = lazy(()=>import("./components/Grocery"));
+import UserContext from "./utils/UserContext";
+
+
 //COMPONENT COMPOSITION
 const AppLayout = ()=> {
-    return (
-        <div className="app"> 
-              <Header/>
-              <Outlet/>
-              {/** if path is "/", then it should have body component */}
-              {/** if path is "/about", then below header, only About compo, etc */}
-              <Footer/>
-        </div>
 
+    const [userName, setUserName]= useState();
+
+    //Authentication
+    useEffect(()=> {
+        //Make an API call & send userName & password
+        // got below data from API
+        const userData ={
+            name: "Preeti Saharan"
+        };
+        setUserName(userData.name);
+    }, []);
+
+    return (
+        <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
+            <div className="app"> 
+                <Header/>
+                <Outlet/>
+                {/** if path is "/", then it should have body component */}
+                {/** if path is "/about", then below header, only About compo, etc */}
+                <Footer/>
+            </div>
+        </UserContext.Provider>
     );  
 
 };
