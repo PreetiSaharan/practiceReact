@@ -12,6 +12,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { lazy } from "react";
 const Grocery = lazy(()=>import("./components/Grocery"));
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 
 //COMPONENT COMPOSITION
@@ -30,15 +32,17 @@ const AppLayout = ()=> {
     }, []);
 
     return (
-        <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
-            <div className="app"> 
-                <Header/>
-                <Outlet/>
-                {/** if path is "/", then it should have body component */}
-                {/** if path is "/about", then below header, only About compo, etc */}
-                <Footer/>
-            </div>
-        </UserContext.Provider>
+        <Provider store={appStore}>
+            <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
+                <div className="app"> 
+                    <Header/>
+                    <Outlet/>
+                    {/** if path is "/", then it should have body component */}
+                    {/** if path is "/about", then below header, only About compo, etc */}
+                    <Footer/>
+                </div>
+            </UserContext.Provider>
+        </Provider>
     );  
 
 };

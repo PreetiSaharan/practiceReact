@@ -1,10 +1,18 @@
 import { CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({items})=> {
     console.log("itemCards - ", items);
+    
+    const dispatch = useDispatch();
+    const handleAddItem =(item)=>{
+        // Dispatch an action
+        dispatch(addItem(item)); // here whatever i pass to addItem is my action.payload -i.e. which goes to the reducer function in Cart slice
+
+    }
     return(
         <div>
-            
             {items.map((item)=> (
                 <div key={item.card.info.id} className="m-2 p-2 border-b-2 border-gray-300 text-left "> 
                     <div className="pb-2 flex justify-between">
@@ -17,7 +25,7 @@ const ItemList = ({items})=> {
                         </div>
                         <div className="w-3/12 ">
                             <div className="absolute">
-                                <button className="px-4 py-1 bg-white rounded-lg shadow-xl mx-7 mt-20 text-emerald-600 font-bold hover:bg-gray-200"> ADD</button>
+                                <button className="px-4 py-1 bg-white rounded-lg shadow-xl mx-7 mt-20 text-emerald-600 font-bold hover:bg-gray-200" onClick={()=> handleAddItem(item)}> ADD</button>
                             </div>
                             <img src= {CDN_URL + item.card.info.imageId}/>
                             
