@@ -118,3 +118,25 @@ there are diff types of roles - like heading, button, etc
 
 can find button using -- screen.getByText("submit");
 i.e anywhere there is text called submit (because it will be button)
+
+
+# console.log
+const inputBoxes = screen.getAllByRole("textbox"); 
+console.log(inputBoxes);
+
+console.log here returns the objects (virtual dom of inputs) (returns JSX element/ VirtualDOM object/ react fibre note)
+
+when there are mukltiple inputs etc- use ALL
+
+# BASIC FLOW OF TESTCASES
+-Render something
+-Query something
+-Assert something
+
+
+## when & how to group testcases
+sometimes the test case file become bulky as so many testcases inside it 
+-so group them using "describe ("contactUs test cases")"
+-can have describe inside describe
+
+instead of test("", ()=>{}), can use it("", ()=>{})

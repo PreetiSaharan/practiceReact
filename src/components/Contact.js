@@ -21,9 +21,7 @@ const Contact = ()=>{
                 </div>
             </div>
             <form className="mt-10">
-                <input type="text" 
-                placeholder="Name" 
-                className="m-4 text-center"/>
+                <input type="text" placeholder="Name" className="m-4 text-center"/>
                 <input type="text" placeholder="Email-Id" className="m-4 text-center"/>
                 <input type="text" placeholder="Message" className="m-4 text-center"/>
                 <button className="bg-emerald-500 p-2 rounded-lg shadow-xl">Submit</button>
