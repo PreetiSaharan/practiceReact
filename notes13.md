@@ -140,3 +140,41 @@ sometimes the test case file become bulky as so many testcases inside it
 -can have describe inside describe
 
 instead of test("", ()=>{}), can use it("", ()=>{})
+
+## TEST CASES for Header (unit)
+-whether rendered or not
+-render(<Header/>); -fails as test is not able to understand useSelector - as redux
+-So, we need to use provider in test file
+-Link to - is not react - it is coming from react router dom
+
+import { BrowserRouter } from "react-router-dom";
+now my test will understand Link Component
+
+
+import "@testing-library/jest-dom"; requied for .toBeInTheDocument() to work. Ex- expect(loginButton).toBeInTheDocument(); 
+
+
+## TESTING REASTAURANT CARD COMPONENT - HOW TO pass props while testing
+
+props - means whats' ebing passed to the component
+
+- done by creating mockData
+- create new folder - mocks - for keeping mockData
+- hard code data being put in that mocks
+
+## INTEGRATION TESTS
+--how to write test cases for integration of multiple components
+--as soon as body loads-> type something in input-> search button click-> list of restaurants changes(only few there)
+
+# get error when rendering body - shows error - fetch is not defined
+ render(<Body />);
+ because it is rendered in JS Dom which is browser like but NOT Browser - so can't understand what is fetch
+ - so we will have to fake it - have to write a mock fetch function
+ - replace fetch by global.fetch 
+ - writing mock fetch function - making it similar to how browser gives us
+ - fetch function returns a promise - & that promise returns a json- this json has a function which again returns a promise- so resolve that 
+ - 
+
+ ## TEST CANNOT MAKE AN ACTUAL NETWORK CALL as don't have browser - running on JSDOM - browser like env -these testcases run without internet also- therefore we use mock function & mock data
+ 
+

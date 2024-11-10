@@ -6,6 +6,7 @@ import {useContext} from "react";
 //Restaurant Card (reusable)(so, create separate component)
 const RestaurantCard= (props) => {
     const {resData} = props;
+    console.log("printing resData to be used in MOCKS for TESTING ", resData);
     const {loggedInUser} = useContext(UserContext);
 
     const {
