@@ -1,28 +1,28 @@
-/*
-//Conditional rendering
+
+//------------------------Conditional rendering----------------------------------------------
 {isLoggedIn ==false? <DisplayLoggedOut/> : <DisplayLoggedIn/>}
 
-// using ref
+//---------------------------------using ref---------------------------------------------------------
 const node = this.myCallRef. current;
 
-// useState hook
+//----------------------useState hook----------------------------------------------------
 import {useState} from "react";
 const[resList, setResList] = useState();
 
-//useEffect Hook
-import {useeffect} from "react";
+//--------------useEffect Hook--------------------------------------------------
+import {useEffect} from "react";
 
 useEffect (cbf, dependency);
 
-// React Fragments
+//----------------------------------React Fragments-------------------------------
 <React.Fragment>
   <h1> Hi my name is Preeti</h1>
   <p>This is my intro</p>
 </React.Fragment>
 
-*/
 
-// create counter with increment & decrement
+
+//-----------------------------create counter with increment & decrement------------------------------------
 import React, { useState } from 'react';
 const App = () => {
   const [counter, setCounter] = useState(0);
@@ -47,22 +47,21 @@ export default App;
 
 
 
-////////////////////////////////////////////////////////////
-// EXAMPLES
+//----------------------------------------------EXAMPLES---------------------------------------------------
 
-//// EVENT HANDLER & useState
+//-------------------- EVENT HANDLER & useState------------------------------
 const [counter, setCounter] = useState(0);
 <button onClick={()=>{ setCounter (counter +1)}} ></button>
 
-//// Context API - used in classComponents //DO LATER
+//---------------Context API - used in classComponents //DO LATER-----------------------------
 const MyContext = React.createContext();
 //parent component as - provider
 
 
-/////useContext Hook
+//-------------------------------useContext Hook-------------------------------------
 import React, { createContext, useContext } from "react";
 
-// Create a Context
+//Create a Context
 const MyContext = createContext("Default Value");
 
 const ChildComponent = () => {
@@ -80,7 +79,7 @@ const App = () => (
 
 export default App;
 
-//////////PROPS 
+//------------------------------------PROPS-----------------------------------------
 // Props PASSING (resname & cuisine are props)
 <RestaurantCard 
   resName ="dominos"
@@ -100,7 +99,7 @@ const RestaurantCard = ({resName, cuisine}) => {
 }
 
 
-/////////////Map - key id or key prop
+//------------------------------------Map - key id or key prop---------------------------------
 const Body = ()=> {
   return (
     <div>
@@ -112,7 +111,7 @@ const Body = ()=> {
 }
 
 
-//////// USEEFFCT EX (useEffect)
+//----------------------------------USEEFFCT EX (useEffect)--------------------------------------
 useEffect (()=>{fetchData()}, []);
 const fetchData = async () =>{
   const data = await fetch("swiggyAPI");
@@ -120,3 +119,4 @@ const fetchData = async () =>{
 const json = await data.json; 
 
 
+//------------------------ex
