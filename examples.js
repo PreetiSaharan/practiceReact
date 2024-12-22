@@ -128,7 +128,28 @@ const RestaurantCard = ({resName, cuisine}) => {
   )
 }
 
+//----------------------------------PROPS passing -----------------------------------------
+import React from "react";
 
+const Parent = ()=>{
+  const data = "hello world";
+  return (
+    <div>
+      <Child data={data}/>
+    </div>
+  )
+}
+
+const Child = ({data})=>{
+  return (
+    <div>
+      <p> this is the child data -- {data}</p>
+    </div>
+  )
+}
+
+
+export default Parent;
 //------------------------------------Map - key id or key prop---------------------------------
 const Body = ()=> {
   return (
