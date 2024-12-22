@@ -55,8 +55,68 @@ const App = () => {
 
 export default App;
 
+
+//------------------------STOPWATCH---------------------------------------------------------
+import React from "react";
+import {useState, useEffect, useRef} from "react";
+//stopWatch
+// initial counter 0
+// 2buttons - start & reset
+// time - in  seconds & milliseconds
+const Stopwatch =()=>{
+  const [timer, setTimer] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const timeRef = useRef(null);
+  
+  const startTimer = (timer)=>{
+       if(!isTimerRunning){
+         setIsTimerRunning(true);
+         timeRef.current = setInterval(()=>{
+           setTimer((prevState)=>prevState+10)}, 10);
+       }
+  };
+
+  const stopTimer =(timer)=>{
+    setIsTimerRunning(false);
+    clearInterval(timeRef.current);
+    
+  }
+
+  const formatTime = (timer)=>{
+    const sec = Math.floor(timer /1000);
+    const millisec = timer % 1000;
+    return `${sec}sec ${millisec}millisec`;
+  }
+  
+  const resetTimer =()=>{
+    setIsTimerRunning(false);
+    clearInterval(timeRef.current);
+    setTimer(0);
+  }  
+  return (
+    <div>
+      <button onClick={startTimer}>Start</button>
+      <button onClick = {stopTimer}>Stop</button>
+      <button onClick={resetTimer}>Reset</button>
+      <div>
+        <p>The current time is- {timer} -- {formatTime(timer)}  </p>
+      </div>
+    </div>
+  )
+};
+
+export default Stopwatch;
+
+
 //------------------------Conditional rendering----------------------------------------------
 {isLoggedIn ==false? <DisplayLoggedOut/> : <DisplayLoggedIn/>}
+
+//-----------------------Conditional Rendering------------------------------------------
+return (
+  <div>
+    {isVisible && <span>I'm visible!</span>} //if isVisible true then implement the thing after &&
+  </div>
+);
 
 //---------------------------------using ref---------------------------------------------------------
 const node = this.myCallRef. current;
