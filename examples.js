@@ -119,4 +119,3 @@ const fetchData = async () =>{
 const json = await data.json; 
 
 
-//------------------------ex
