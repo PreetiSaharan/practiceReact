@@ -1,0 +1,37 @@
+  FROM BEGINNING (to setup git local & remote & merge them from beginning)
+  create repository in github with same name 
+  cd ..
+  cd learnReact/
+  git init
+  git status
+  git remote add origin https://github.com/PreetiSaharan/practiceReact.git
+  git remote set-url origin git@github.com:PreetiSaharan/practiceReact.git
+  git add .
+  git commit -m "Day1 reactPractice"
+  git push origin master
+  git status
+  
+  
+  UPDATE COMMANDS (Once setup, regular updates are pushed using below commands)
+  (first we stage=> commit=> push changes)
+  cd learnReact/
+  git status
+  git add .  (command to stage changes)
+  git commit -m "Day2 reactPractice"
+  git push origin master
+  git status 
+  
+
+
+   
+
+
+
+
+
+  
+
+
+
+
+
