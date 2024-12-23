@@ -544,6 +544,101 @@ const ProgressBar = () => {
 
 export default ProgressBarApp;
 
+//--------------------------BUS TICKET BOOKING----------------------------------------------------------------------------
+import React, { useState } from "react";
+
+const BusSeatBooking = () => {
+  const [formData, setFormData] = useState({ name: "", age: "" });
+  const [selectedSeat, setSelectedSeat] = useState(null);
+  const [bookedSeats, setBookedSeats] = useState([]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSeatSelection = (seat) => {
+    if (!bookedSeats.includes(seat)) {
+      setSelectedSeat(seat);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name && formData.age && selectedSeat) {
+      setBookedSeats([...bookedSeats, selectedSeat]);
+      setFormData({ name: "", age: "" });
+      setSelectedSeat(null);
+      alert("Booking successful!");
+    }
+  };
+
+  const isFormValid = formData.name && formData.age && selectedSeat;
+
+  return (
+    <form onSubmit={handleSubmit} style={{ width: "300px", margin: "0 auto" }}>
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        value={formData.name}
+        onChange={handleInputChange}
+        required
+        style={{ display: "block", margin: "10px 0", width: "100%" }}
+      />
+      <input
+        type="number"
+        name="age"
+        placeholder="Age"
+        value={formData.age}
+        onChange={handleInputChange}
+        required
+        style={{ display: "block", margin: "10px 0", width: "100%" }}
+      />
+      <p>Select the seat by clicking on it:</p>
+      <div>
+        {["1A", "1B", "1C", "2A", "2B", "2C"].map((seat) => (
+          <button
+            key={seat}
+            type="button"
+            onClick={() => handleSeatSelection(seat)}
+            style={{
+              backgroundColor: bookedSeats.includes(seat)
+                ? "red"
+                : selectedSeat === seat
+                ? "green"
+                : "white",
+              color: bookedSeats.includes(seat) ? "white" : "black",
+              margin: "5px",
+              padding: "10px",
+              cursor: bookedSeats.includes(seat) ? "not-allowed" : "pointer",
+            }}
+            disabled={bookedSeats.includes(seat)}
+          >
+            {seat}
+          </button>
+        ))}
+      </div>
+      <button
+        type="submit"
+        disabled={!isFormValid}
+        style={{
+          width: "100%",
+          marginTop: "20px",
+          padding: "10px",
+          backgroundColor: isFormValid ? "blue" : "gray",
+          color: "white",
+          border: "none",
+          cursor: isFormValid ? "pointer" : "not-allowed",
+        }}
+      >
+        Submit
+      </button>
+    </form>
+  );
+};
+
+export default BusSeatBooking;
 
 //----------------------------PAGINATION---------------------------------------------
 import React, { useState } from "react";
