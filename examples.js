@@ -56,7 +56,7 @@ const App = () => {
 export default App;
 
 
-//------------------------STOPWATCH---------------------------------------------------------
+//------------------------STOPWATCH (using setInterval)---------------------------------------------------------
 import React from "react";
 import {useState, useEffect, useRef} from "react";
 //stopWatch
@@ -106,6 +106,30 @@ const Stopwatch =()=>{
 };
 
 export default Stopwatch;
+
+
+//------------------------ setTimeout (data loading after 5 sec)----------------------------------------------------------------------
+import React, {useState, useRef, useEffect} from "react";
+
+const AppPractice = ()=>{
+ 
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(null);
+
+  useEffect (()=>{ 
+    setTimeout(()=>{
+      setData("welcome to the after loading");
+      setIsLoading(false);
+    }, 5000)}, []) // the data gets loaded after 5sec 
+
+  return(
+    <div>
+      {isLoading? "loading......": data} 
+    </div> 
+  )
+}
+
+export default AppPractice;
 
 
 //------------------------Conditional rendering----------------------------------------------
