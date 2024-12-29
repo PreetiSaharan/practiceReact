@@ -107,6 +107,77 @@ const Stopwatch =()=>{
 
 export default Stopwatch;
 
+//----------------------------------------------------COUNTDOWN -------------------------------------------------------------------
+import React, { useRef, useState, useEffect } from "react";
+
+const App = () => {
+  const intervalRef = useRef(null); // To store the interval ID
+  const timerRef = useRef(null); // To reference the input element
+  const [timer, setTimer] = useState(0); // Timer state in milliseconds
+  const [isTimerRunning, setIsTimerRunning] = useState(false); // Timer running state
+
+  const handleCountDown = () => {
+    if (isTimerRunning) {
+      // Pause the countdown
+      clearInterval(intervalRef.current);
+      setIsTimerRunning(false);
+    } else {
+      // Start or resume the countdown
+      if (timer === 0) {
+        // Only check input value if the countdown is starting (not resuming)
+        const inputVal = Math.floor(timerRef.current.value * 1000); // Convert seconds to milliseconds
+        if (inputVal > 10) {
+          setTimer(inputVal);
+        } else {
+          alert("Please enter a valid time greater than 0.01 seconds.");
+          return;
+        }
+      }
+      setIsTimerRunning(true);
+      intervalRef.current = setInterval(() => {
+        setTimer((prev) => {
+          if (prev <= 10) {
+            clearInterval(intervalRef.current);
+            setIsTimerRunning(false);
+            return 0;
+          }
+          return prev - 10; // Decrement timer by 10 milliseconds
+        });
+      }, 10);
+    }
+  };
+
+  const formatCountDown = () => {
+    const sec = Math.floor(timer / 1000);
+    const millisec = timer % 1000;
+    return `${sec}s ${millisec}ms`;
+  };
+
+  const handleSubmitButton = (e) => {
+    e.preventDefault(); // Prevent form submission reload
+  };
+
+  useEffect(() => {
+    return () => clearInterval(intervalRef.current); // Cleanup on component unmount
+  }, []);
+
+  return (
+    <div>
+      <form onSubmit={handleSubmitButton}>
+        <h2>Count Down Timer</h2>
+        <input ref={timerRef} name="timer" type="number" placeholder="Enter seconds" />
+        <button type="button" onClick={handleCountDown}>
+          {isTimerRunning ? "Pause Countdown" : "Start Countdown"}
+        </button>
+        <div>Live Countdown: {formatCountDown()}</div>
+      </form>
+    </div>
+  );
+};
+
+export default App;
+
+
 
 //------------------------ setTimeout (data loading after 5 sec)----------------------------------------------------------------------
 import React, {useState, useRef, useEffect} from "react";
