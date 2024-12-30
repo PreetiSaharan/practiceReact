@@ -108,74 +108,76 @@ const Stopwatch =()=>{
 export default Stopwatch;
 
 //----------------------------------------------------COUNTDOWN -------------------------------------------------------------------
-import React, { useRef, useState, useEffect } from "react";
+// STOPWATCH
 
-const App = () => {
-  const intervalRef = useRef(null); // To store the interval ID
-  const timerRef = useRef(null); // To reference the input element
-  const [timer, setTimer] = useState(0); // Timer state in milliseconds
-  const [isTimerRunning, setIsTimerRunning] = useState(false); // Timer running state
+import React from "react";
+import {useRef, useEffect, useState} from "react";
 
-  const handleCountDown = () => {
-    if (isTimerRunning) {
-      // Pause the countdown
-      clearInterval(intervalRef.current);
+const App = ()=>{
+  const [timer, setTimer] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const timerRef = useRef(0);
+  const intervalRef = useRef(null);
+
+  const handleCountdownClick = ()=>{
+    if(isTimerRunning){
+      //pause timer
       setIsTimerRunning(false);
-    } else {
-      // Start or resume the countdown
-      if (timer === 0) {
-        // Only check input value if the countdown is starting (not resuming)
-        const inputVal = Math.floor(timerRef.current.value * 1000); // Convert seconds to milliseconds
-        if (inputVal > 10) {
-          setTimer(inputVal);
-        } else {
-          alert("Please enter a valid time greater than 0.01 seconds.");
+      clearInterval(intervalRef.current);  
+    }
+    else {
+      setIsTimerRunning(true);
+      if(timer===0){
+        const inputVal = Number(timerRef.current.value);
+        if(isNaN(inputVal) || inputVal <0){
+          alert("return a valid input value in seconds greater than 0");
           return;
         }
+        setTimer(Math.floor(inputVal*1000));
       }
-      setIsTimerRunning(true);
-      intervalRef.current = setInterval(() => {
-        setTimer((prev) => {
-          if (prev <= 10) {
-            clearInterval(intervalRef.current);
-            setIsTimerRunning(false);
-            return 0;
-          }
-          return prev - 10; // Decrement timer by 10 milliseconds
-        });
-      }, 10);
+        intervalRef.current = setInterval (()=>{
+          setTimer((prev)=>{
+            if(prev<=10){
+              setIsTimerRunning(false);
+              clearInterval(intervalRef.current);
+              return 0;
+            }
+            return prev-10
+          })
+        }, 10)
     }
-  };
+  }
 
-  const formatCountDown = () => {
-    const sec = Math.floor(timer / 1000);
-    const millisec = timer % 1000;
-    return `${sec}s ${millisec}ms`;
-  };
-
-  const handleSubmitButton = (e) => {
-    e.preventDefault(); // Prevent form submission reload
-  };
-
-  useEffect(() => {
-    return () => clearInterval(intervalRef.current); // Cleanup on component unmount
-  }, []);
-
+  const resetCountdown = ()=>{
+    setIsTimerRunning(false);
+    clearInterval(intervalRef.current);
+    setTimer(0);
+  }
+  
+  const formatTimer =()=>{
+    const sec = Math.floor(timer/1000);
+    const millisec =  timer % 1000; 
+    return `${sec}sec ${millisec}ms`
+  }
+  useEffect (()=>{
+    return ()=>clearInterval(intervalRef.current);
+  }, [])
+  
   return (
     <div>
-      <form onSubmit={handleSubmitButton}>
-        <h2>Count Down Timer</h2>
-        <input ref={timerRef} name="timer" type="number" placeholder="Enter seconds" />
-        <button type="button" onClick={handleCountDown}>
-          {isTimerRunning ? "Pause Countdown" : "Start Countdown"}
-        </button>
-        <div>Live Countdown: {formatCountDown()}</div>
-      </form>
+      <input ref={timerRef} type="number" placeholder="seconds"/>
+      <button onClick={handleCountdownClick}> 
+        {isTimerRunning? "Stop Countdown": "Start Countdown"}
+      </button>
+      <button onClick ={resetCountdown}>Reset Countdown</button>
+      <div>Live countdown: {formatTimer(timer)}</div>
     </div>
-  );
-};
+    
+  )
+}
 
 export default App;
+
 
 
 
