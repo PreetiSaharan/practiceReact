@@ -55,7 +55,57 @@ const App = () => {
 
 export default App;
 
+//------------------------TO DO LIST --------------------------------------------------------------------------
+import React, { useRef, useState } from 'react'
+import Confetti from 'js-confetti';
 
+//TO DO List
+
+const App=()=>{
+  const [tasks, setTasks] = useState([]);
+  const taskInputRef = useRef(null);
+  
+  const addTask = (e)=>{
+    e.preventDefault();
+    const newTask = taskInputRef.current.value.trim();
+    if(newTask === "") return;
+    setTasks([...tasks, newTask]);
+    taskInputRef.current.value =" ";
+  }
+
+  const deleteTask =(index)=>{
+    const updatedTasks = tasks.filter((_, i)=> i!==index);
+    setTasks(updatedTasks);
+    
+  }
+  
+  return(
+    <div>
+      <h2> To do list</h2>
+      <form onSubmit={addTask}>
+        
+        <input ref={taskInputRef} name="todo" placeholder="Enter New Task" type="text" style={{margin:"5px"}}/>
+       <button type="submit"> Add Task</button>
+      </form>
+      <ul style={{padding:"10px", margin: "10px"}}>{
+      tasks.map((task, index)=>
+        <li key={index} style={{border:"1px solid black",
+                                display: "flex",
+                                justifyContent:"space-between",
+                                  background: "lightyellow",
+                                margin:"5px",
+                                padding:"5px"
+                                }}
+          >
+          {task}
+          <button style={{background:"red", color:"white"}} onClick={()=>deleteTask(index)}> Delete</button>
+      </li>)}</ul>
+    </div>
+    
+  )
+}
+
+export default App
 //------------------------STOPWATCH (using setInterval)---------------------------------------------------------
 import React from "react";
 import {useState, useEffect, useRef} from "react";
