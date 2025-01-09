@@ -454,6 +454,85 @@ export default counter;
 
 
 //----------------------------CONTACT FORM ----------------------------------------
+import React, {useRef, useState} from 'react';
+
+const App = ()=>{
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const [formData, setFormData] = useState({name:"", email:"", password:""})
+  const [errors, setErrors] = useState({name:'', email:"", password:""})
+  const [formMessage, setFormMessage] = useState("")
+
+  
+  const validateForm = (formData)=>{
+    const newErrors = {};
+    if (!formData.name.trim()){
+      newErrors.name = "Name is required";
+    }
+    const emailRegex= /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(formData.email)){
+      newErrors.email= "Email is not valid."
+    }
+
+    if(formData.password.length<6){
+      newErrors.password= "must be at least 6 letters long";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length===0; // return true if no errors
+  }
+
+  const submitForm=(e)=>{
+    e.preventDefault();
+    console.log("submitted Form");
+    const updatedForm = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value
+    }
+
+    setFormData(updatedForm);
+    
+    if(validateForm(updatedForm)){
+      setFormMessage("form is successfully validated");
+    }
+    else {setFormMessage("form is invalidated")}
+
+    nameRef.current.value ="";
+    emailRef.current.value ="";
+    passwordRef.current.value ="";
+  }
+  
+  return (
+    <div>
+      <form onSubmit = {submitForm}>
+        <div>
+          
+            Name:  <input ref= {nameRef} name="name" placeholder="Name" type="text" />
+            {errors.name && <p style={{color:"red"}}>{errors.name}</p>}
+        </div>
+        <div>
+            EmailID : <input ref= {emailRef} name="email" placeholder="Email" type="text"/>
+            {errors.email && <p style={{color:"red"}}>{errors.email}</p>}
+        </div>
+        <div>
+            Password: <input ref= {passwordRef} name="password" placeholder="Password" type="password" />
+            {errors.password && <p style={{color:"red"}}>{errors.password}</p>}
+        </div>
+      <button type="submit"> Submit </button>
+      </form>
+
+      {formMessage && <p style={{color: formMessage.includes("successfully")? "green": "red"}}>{formMessage}</p>}
+    </div>
+    
+  )
+}
+
+export default App;
+
+
+
 /*
 //import submitForm from './submitForm';
 import {useRef} from "react";
